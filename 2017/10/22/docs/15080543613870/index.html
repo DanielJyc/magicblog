@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>技术博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Excel工具指标梳理操作员维度 AB过滤掉：否、空白： 分期金额总和：SUM(AD)，即分期金额求和 分期手续费总和：SUM(AE)，即分期手续费求和 对客编去重后 分期期数的平均数：AVG(AC) 对应分期期数下客户数总和：COUNT(E)。 对应期的用户数：有3、6、9、12、18、24分期数。      全局维度 AB过滤掉：否、空白；并去重后客编： 成功户数：COUNT(E)，即客编的数">
+<meta property="og:type" content="article">
+<meta property="og:title" content="技术博客">
+<meta property="og:url" content="http://yoursite.com/2017/10/22/docs/15080543613870/index.html">
+<meta property="og:site_name" content="技术博客">
+<meta property="og:description" content="Excel工具指标梳理操作员维度 AB过滤掉：否、空白： 分期金额总和：SUM(AD)，即分期金额求和 分期手续费总和：SUM(AE)，即分期手续费求和 对客编去重后 分期期数的平均数：AVG(AC) 对应分期期数下客户数总和：COUNT(E)。 对应期的用户数：有3、6、9、12、18、24分期数。      全局维度 AB过滤掉：否、空白；并去重后客编： 成功户数：COUNT(E)，即客编的数">
+<meta property="og:updated_time" content="2017-10-22T13:23:31.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="技术博客">
+<meta name="twitter:description" content="Excel工具指标梳理操作员维度 AB过滤掉：否、空白： 分期金额总和：SUM(AD)，即分期金额求和 分期手续费总和：SUM(AE)，即分期手续费求和 对客编去重后 分期期数的平均数：AVG(AC) 对应分期期数下客户数总和：COUNT(E)。 对应期的用户数：有3、6、9、12、18、24分期数。      全局维度 AB过滤掉：否、空白；并去重后客编： 成功户数：COUNT(E)，即客编的数">
+  
+    <link rel="alternate" href="/atom.xml" title="技术博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">技术博客</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Suche"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-docs/15080543613870" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/10/22/docs/15080543613870/" class="article-date">
+  <time datetime="2017-10-22T13:23:31.000Z" itemprop="datePublished">2017-10-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Excel工具"><a href="#Excel工具" class="headerlink" title="Excel工具"></a>Excel工具</h1><h2 id="指标梳理"><a href="#指标梳理" class="headerlink" title="指标梳理"></a>指标梳理</h2><h3 id="操作员维度"><a href="#操作员维度" class="headerlink" title="操作员维度"></a>操作员维度</h3><ul>
+<li><code>AB</code>过滤掉：否、空白：<ul>
+<li>分期金额总和：<code>SUM(AD)</code>，即分期金额求和</li>
+<li>分期手续费总和：<code>SUM(AE)</code>，即分期手续费求和</li>
+<li>对客编去重后<ul>
+<li>分期期数的平均数：<code>AVG(AC)</code></li>
+<li>对应分期期数下客户数总和：<code>COUNT(E)</code>。</li>
+<li>对应期的用户数：有3、6、9、12、18、24分期数。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="全局维度"><a href="#全局维度" class="headerlink" title="全局维度"></a>全局维度</h3><ul>
+<li><code>AB</code>过滤掉：否、空白；并去重后客编：<ul>
+<li>成功户数：<code>COUNT(E)</code>，即客编的数量。</li>
+<li>分期总期次(汇总的平均数)：<code>AVG(AC)</code>，即分期期数的平均数</li>
+</ul>
+</li>
+<li><code>AB</code>过滤掉：否：<ul>
+<li>消费总和：<code>SUM(Q)</code>，即消费金额求和</li>
+<li>分期金额总和：<code>SUM(AD)</code>，即分期金额求和</li>
+<li>处理户数：<code>distinct COUNT(E)</code>，去重后求总数</li>
+</ul>
+</li>
+</ul>
+<h3 id="分期金额AD阈值"><a href="#分期金额AD阈值" class="headerlink" title="分期金额AD阈值"></a>分期金额<code>AD</code>阈值</h3><ul>
+<li><code>AB</code>过滤掉 否、空白； 按照客编维度对<code>AD</code>求和的值 在6个区间里面<ul>
+<li>户数：<code>COUNT(E)</code>，即6个区间的客户数.</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>注：分期金额阈值[0,5000]  [5000,10000] [10000,20000]  [20000,50000]  [50000,100000]   [100000, 正无穷]；左闭右开。</p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/10/22/docs/15080543613870/" data-id="cjcakdp2z00114wif4ibi788m" class="article-share-link">Teilen</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/10/29/docs/15092522858500/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Neuer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/10/22/docs/15080457414666/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Älter</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archiv</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">letzter Beitrag</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/01/11/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2018/01/11/docs/15156644923181/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2018/01/11/docs/15154045756604/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2018/01/10/docs/15155800245176/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2018/01/10/docs/15153963579254/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 DanielJyc<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

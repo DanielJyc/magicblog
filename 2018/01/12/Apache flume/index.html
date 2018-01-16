@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>技术博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Apache flumeflume是分布式的日志收集系统，它将各个服务器中的数据收集起来并送到指定的地方去，比如说送到图中的HDFS，简单来说flume就是收集日志的。 同类产品对比Flume使用基于事务的数据传递方式来保证事件传递的可靠性。而logstash内部是没有persist queue，所以在异常情况下，是可能出现数据丢失的问题的。 具体可参考下面的文档。 eventevent将传输的数">
+<meta property="og:type" content="article">
+<meta property="og:title" content="技术博客">
+<meta property="og:url" content="http://yoursite.com/2018/01/12/Apache flume/index.html">
+<meta property="og:site_name" content="技术博客">
+<meta property="og:description" content="Apache flumeflume是分布式的日志收集系统，它将各个服务器中的数据收集起来并送到指定的地方去，比如说送到图中的HDFS，简单来说flume就是收集日志的。 同类产品对比Flume使用基于事务的数据传递方式来保证事件传递的可靠性。而logstash内部是没有persist queue，所以在异常情况下，是可能出现数据丢失的问题的。 具体可参考下面的文档。 eventevent将传输的数">
+<meta property="og:image" content="http://yoursite.com/2018/01/12/Apache%20flume/media/15152252519684/15153988664487.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/01/12/Apache%20flume/media/15152252519684/15153992479580.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/01/12/Apache%20flume/media/15152252519684/15153997503906.jpg">
+<meta property="og:updated_time" content="2018-01-12T13:49:48.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="技术博客">
+<meta name="twitter:description" content="Apache flumeflume是分布式的日志收集系统，它将各个服务器中的数据收集起来并送到指定的地方去，比如说送到图中的HDFS，简单来说flume就是收集日志的。 同类产品对比Flume使用基于事务的数据传递方式来保证事件传递的可靠性。而logstash内部是没有persist queue，所以在异常情况下，是可能出现数据丢失的问题的。 具体可参考下面的文档。 eventevent将传输的数">
+<meta name="twitter:image" content="http://yoursite.com/2018/01/12/Apache%20flume/media/15152252519684/15153988664487.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="技术博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">技术博客</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Apache flume" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/01/12/Apache flume/" class="article-date">
+  <time datetime="2018-01-12T13:49:48.000Z" itemprop="datePublished">2018-01-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Apache-flume"><a href="#Apache-flume" class="headerlink" title="Apache flume"></a>Apache flume</h1><p>flume是分布式的日志收集系统，它将各个服务器中的数据收集起来并送到指定的地方去，比如说送到图中的HDFS，简单来说flume就是收集日志的。<br><img src="media/15152252519684/15153988664487.jpg" alt="-w589"></p>
+<h2 id="同类产品对比"><a href="#同类产品对比" class="headerlink" title="同类产品对比"></a>同类产品对比</h2><p>Flume使用基于事务的数据传递方式来保证事件传递的可靠性。而logstash内部是没有persist queue，所以在异常情况下，是可能出现数据丢失的问题的。</p>
+<p>具体可参考下面的文档。</p>
+<h2 id="event"><a href="#event" class="headerlink" title="event"></a>event</h2><p>event将传输的数据进行封装，是flume传输数据的基本单位，如果是文本文件，通常是一行记录，event也是事务的基本单位。flume的核心是把数据从数据源(source)收集过来，在将收集到的数据送到指定的目的地(sink)。为了保证输送的过程一定成功，在送到目的地(sink)之前，会先缓存数据(channel),待数据真正到达目的地(sink)后，flume在删除自己缓存的数据。 </p>
+<p><img src="media/15152252519684/15153992479580.jpg" alt="-w421"></p>
+<h2 id="flume架构介绍"><a href="#flume架构介绍" class="headerlink" title="flume架构介绍"></a>flume架构介绍</h2><ul>
+<li>agent：本身是一个java进程，运行在日志收集节点—所谓日志收集节点就是服务器节点。 agent里面包含3个核心的组件：source—-&gt;channel—–&gt;sink,类似生产者、仓库、消费者的架构。</li>
+<li>source：source组件是专门用来收集数据的，可以处理各种类型、各种格式的日志数据。</li>
+<li>channel：source组件把数据收集来以后，临时存放在channel中。用来存放临时数据的——对采集到的数据进行简单的缓存，可以存放在memory、jdbc、file等等。 </li>
+<li>sink：sink组件是用于把数据发送到目的地的组件，目的地包括hdfs、logger、avro、thrift、ipc、file、null、hbase、solr、自定义。 </li>
+</ul>
+<p>于flume可以支持多级flume的agent，即flume可以前后相继，例如sink可以将数据写到下一个agent的source中，这样的话就可以连成串了，可以整体处理了。flume还支持扇入(fan-in)、扇出(fan-out)。所谓扇入就是source可以接受多个输入，所谓扇出就是sink可以将数据输出多个目的地destination中。 </p>
+<p><img src="media/15152252519684/15153997503906.jpg" alt=""></p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><a href="http://blog.csdn.net/a2011480169/article/details/51544664" target="_blank" rel="noopener">Flume架构以及应用介绍</a></li>
+<li><a href="https://www.cnblogs.com/xing901022/p/5631445.html" target="_blank" rel="noopener">Flume日志采集系统——初体验（Logstash对比版）</a></li>
+<li><a href="http://blog.csdn.net/yesicatt/article/details/52104622" target="_blank" rel="noopener">Logstash，flume，sqoop比较</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/01/12/Apache flume/" data-id="cjchkugnz0001sfiflykc83od" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/01/12/Apache Ambari/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/01/12/Apache Superset/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/01/12/Apache Ambari/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2018/01/12/Apache flume/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2018/01/12/Apache Superset/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2018/01/12/Siddhi/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2018/01/12/Apache Eagle/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 DanielJyc<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

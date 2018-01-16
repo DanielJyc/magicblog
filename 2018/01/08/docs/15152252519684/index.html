@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>技术博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="SiddhiSiddhi是一个复杂事件流程引擎CEP(Complex Event Processing)。使用类SQL的语言描述事件流任务，可以很好的支撑开发一个可扩展的，可配置的流式任务执行引擎。性能管理系统之中，告警模块采用storm作为告警生成组件。传统设计之中，为了支持不同的告警规则类型，我们需要编写不同的业务逻辑代码，但是使用了Siddhi之后，我们只需要配置不同的流任务Siddhiql">
+<meta property="og:type" content="article">
+<meta property="og:title" content="技术博客">
+<meta property="og:url" content="http://yoursite.com/2018/01/08/docs/15152252519684/index.html">
+<meta property="og:site_name" content="技术博客">
+<meta property="og:description" content="SiddhiSiddhi是一个复杂事件流程引擎CEP(Complex Event Processing)。使用类SQL的语言描述事件流任务，可以很好的支撑开发一个可扩展的，可配置的流式任务执行引擎。性能管理系统之中，告警模块采用storm作为告警生成组件。传统设计之中，为了支持不同的告警规则类型，我们需要编写不同的业务逻辑代码，但是使用了Siddhi之后，我们只需要配置不同的流任务Siddhiql">
+<meta property="og:updated_time" content="2018-01-08T09:45:11.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="技术博客">
+<meta name="twitter:description" content="SiddhiSiddhi是一个复杂事件流程引擎CEP(Complex Event Processing)。使用类SQL的语言描述事件流任务，可以很好的支撑开发一个可扩展的，可配置的流式任务执行引擎。性能管理系统之中，告警模块采用storm作为告警生成组件。传统设计之中，为了支持不同的告警规则类型，我们需要编写不同的业务逻辑代码，但是使用了Siddhi之后，我们只需要配置不同的流任务Siddhiql">
+  
+    <link rel="alternate" href="/atom.xml" title="技术博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">技术博客</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Suche"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-docs/15152252519684" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/01/08/docs/15152252519684/" class="article-date">
+  <time datetime="2018-01-08T09:45:11.000Z" itemprop="datePublished">2018-01-08</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Siddhi"><a href="#Siddhi" class="headerlink" title="Siddhi"></a>Siddhi</h1><p>Siddhi是一个复杂事件流程引擎CEP(Complex Event Processing)。使用类SQL的语言描述事件流任务，可以很好的支撑开发一个可扩展的，可配置的流式任务执行引擎。性能管理系统之中，告警模块采用storm作为告警生成组件。传统设计之中，为了支持不同的告警规则类型，我们需要编写不同的业务逻辑代码，但是使用了Siddhi之后，我们只需要配置不同的流任务Siddhiql，即可以支持不同的告警业务。</p>
+<h2 id="Siddhi-能做什么？"><a href="#Siddhi-能做什么？" class="headerlink" title="Siddhi 能做什么？"></a>Siddhi 能做什么？</h2><ul>
+<li>简单 ETL:使用类SQL</li>
+<li>基于 window 聚合：基于时间窗口</li>
+<li>多个流 Join</li>
+<li>Pattern Query：<code>Pattern allows event streams to be correlated over time and detect event patterns based on the order of event arrival.</code>比如：在一天内，出现一次取现金额 &lt; 100之后，同一张卡，再次出现取现金额 &gt; 10000，则认为是诈骗。</li>
+<li>Sequence Query:和 pattern 的区别是，pattern 的多个 event 之间可以是不连续的，但 sequence 的 events 之间必须是连续的。我们可以看个例子，用sequence 来发现股票价格的 peak：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">from every e1=FilteredStockStream[price&gt;20], </span><br><span class="line">           e2=FilteredStockStream[((e2[last].price is null) and price&gt;=e1.price) or ((not (e2[last].price is null)) and price&gt;=e2[last].price)],</span><br><span class="line">           e3=FilteredStockStream[price&lt;e2[last].price] </span><br><span class="line">select e1.price as priceInitial, e2[last].price as pricePeak, e3.price as priceAfterPeak </span><br><span class="line">insert into PeakStream ;</span><br></pre></td></tr></table></figure>
+<p>上面的查询的意思，<br>e1，收到一条 event.price&gt;20。<br>e2，后续收到的所有 events 的 price，都大于前一条 event。<br>e3，最终收到一条 event 的 price，小于前一条 event。<br>ok，我们发现了一个peak。</p>
+<h2 id="集成到-JStorm"><a href="#集成到-JStorm" class="headerlink" title="集成到 JStorm"></a>集成到 JStorm</h2><p>我将 Siddhi core 封装成一个 Siddhi Bolt，这样可以在 JStorm 的 topology 中很灵活的，选择是否什么方案，可以部分统计用 brain，部分用 Siddhi，非常简单。</p>
+<h2 id="参考："><a href="#参考：" class="headerlink" title="参考："></a>参考：</h2><ul>
+<li><a href="https://www.cnblogs.com/coshaho/p/7051126.html" target="_blank" rel="noopener">Siddhi初探(内含一个实例)</a></li>
+<li><a href="https://www.cnblogs.com/XzcBlog/p/4468679.html" target="_blank" rel="noopener">CEP简介</a></li>
+<li><a href="http://doc.okbase.net/fxjwind/archive/195904.html" target="_blank" rel="noopener">让Storm插上CEP的翅膀 - Siddhi调研和集成</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/01/08/docs/15152252519684/" data-id="cjcakdp3h001e4wifrip1s0kt" class="article-share-link">Teilen</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/01/08/docs/15152262382414/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Neuer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/01/08/docs/15153964233259/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Älter</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archiv</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">letzter Beitrag</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/01/11/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2018/01/11/docs/15156644923181/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2018/01/11/docs/15154045756604/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2018/01/10/docs/15155800245176/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2018/01/10/docs/15153963579254/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 DanielJyc<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

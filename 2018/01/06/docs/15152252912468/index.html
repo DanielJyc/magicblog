@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>技术博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="渠道——加密和解密 签名和验签：发起方采用PKCS#1签名方式，计算整个报文的哈希值，并使用非对称算法对哈希值进行签名， 存入报文的“数字签名域”(下图中的{S:...}部分);接收方使用发起方的公钥对于“数字签名域”进行验签，校验 报文是否被篡改。    注：发起方在报文头中使用“签名证书序列号”作为唯一标识，标明所使用的签名证书;接收方通过接收报文头中的“签名证书序列号”所对应的证书，对签名数">
+<meta property="og:type" content="article">
+<meta property="og:title" content="技术博客">
+<meta property="og:url" content="http://yoursite.com/2018/01/06/docs/15152252912468/index.html">
+<meta property="og:site_name" content="技术博客">
+<meta property="og:description" content="渠道——加密和解密 签名和验签：发起方采用PKCS#1签名方式，计算整个报文的哈希值，并使用非对称算法对哈希值进行签名， 存入报文的“数字签名域”(下图中的{S:...}部分);接收方使用发起方的公钥对于“数字签名域”进行验签，校验 报文是否被篡改。    注：发起方在报文头中使用“签名证书序列号”作为唯一标识，标明所使用的签名证书;接收方通过接收报文头中的“签名证书序列号”所对应的证书，对签名数">
+<meta property="og:image" content="http://yoursite.com/2018/01/06/docs/15152252912468/media/15150471895175/15150503201710.jpg">
+<meta property="og:updated_time" content="2018-01-06T07:55:22.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="技术博客">
+<meta name="twitter:description" content="渠道——加密和解密 签名和验签：发起方采用PKCS#1签名方式，计算整个报文的哈希值，并使用非对称算法对哈希值进行签名， 存入报文的“数字签名域”(下图中的{S:...}部分);接收方使用发起方的公钥对于“数字签名域”进行验签，校验 报文是否被篡改。    注：发起方在报文头中使用“签名证书序列号”作为唯一标识，标明所使用的签名证书;接收方通过接收报文头中的“签名证书序列号”所对应的证书，对签名数">
+<meta name="twitter:image" content="http://yoursite.com/2018/01/06/docs/15152252912468/media/15150471895175/15150503201710.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="技术博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">技术博客</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Suche"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-docs/15152252912468" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/01/06/docs/15152252912468/" class="article-date">
+  <time datetime="2018-01-06T07:55:22.000Z" itemprop="datePublished">2018-01-06</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="渠道——加密和解密"><a href="#渠道——加密和解密" class="headerlink" title="渠道——加密和解密"></a>渠道——加密和解密</h1><ul>
+<li>签名和验签：发起方采用PKCS#1签名方式，计算整个报文的哈希值，并使用非对称算法对哈希值进行签名， 存入报文的“数字签名域”(下图中的<code>{S:...}</code>部分);接收方使用发起方的公钥对于“数字签名域”进行验签，校验 报文是否被篡改。</li>
+</ul>
+<p><img src="media/15150471895175/15150503201710.jpg" alt="-w453"></p>
+<blockquote>
+<p>注：发起方在报文头中使用“签名证书序列号”作为唯一标识，标明所使用的签名证书;接收方<br>通过接收报文头中的“签名证书序列号”所对应的证书，对签名数据进行验签。</p>
+</blockquote>
+<ul>
+<li>敏感字段加密：发起方采用对称秘钥加密敏感信息，使用接收方的公钥，利用非对称加密方式加密对称秘钥key；接收方用非对称秘钥解密得到对称秘钥key，再解密敏感数据。</li>
+</ul>
+<blockquote>
+<p>注：</p>
+<ol>
+<li>发起方使用非对称秘钥的公钥加密后，要进行Base64编码，使字符可见。</li>
+<li>两种加密算法结合的作用：非对称密钥的耗时大于对称秘钥，所以，只用其加密对称秘钥的公钥。</li>
+</ol>
+</blockquote>
+<ul>
+<li><a href="http://www.ruanyifeng.com/blog/2011/08/what_is_a_digital_signature.html" target="_blank" rel="noopener">数字签名是什么？</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/01/06/docs/15152252912468/" data-id="cjcakdp3h001d4wif60yy3rgw" class="article-share-link">Teilen</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/01/06/docs/15150471895175/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Neuer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/01/05/docs/15149486379373/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Älter</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archiv</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">letzter Beitrag</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/01/11/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2018/01/11/docs/15156644923181/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2018/01/11/docs/15154045756604/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2018/01/10/docs/15155800245176/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2018/01/10/docs/15153963579254/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 DanielJyc<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

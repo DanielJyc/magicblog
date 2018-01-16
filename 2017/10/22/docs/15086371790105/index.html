@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>技术博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="决策配置管控二期：dd配置管控和慧脑融合进行了细分评审，并进入开发阶段。 细分阶段的主要问题点：  对类目和业务单元关系：最初的设计要把业务单元弱化掉；因子、动作、规则在二级类目下管理，在全局范围使用；决策树直接在三级类目管理。经过激烈讨论后，最终方案是运行时以业务单元为主，配置态以类目为主。这样，后台代码可以兼容，同时配置人员只需要感知业务单元。 拷贝模式和引用模式：最初的设计要把因子、动作、规">
+<meta property="og:type" content="article">
+<meta property="og:title" content="技术博客">
+<meta property="og:url" content="http://yoursite.com/2017/10/22/docs/15086371790105/index.html">
+<meta property="og:site_name" content="技术博客">
+<meta property="og:description" content="决策配置管控二期：dd配置管控和慧脑融合进行了细分评审，并进入开发阶段。 细分阶段的主要问题点：  对类目和业务单元关系：最初的设计要把业务单元弱化掉；因子、动作、规则在二级类目下管理，在全局范围使用；决策树直接在三级类目管理。经过激烈讨论后，最终方案是运行时以业务单元为主，配置态以类目为主。这样，后台代码可以兼容，同时配置人员只需要感知业务单元。 拷贝模式和引用模式：最初的设计要把因子、动作、规">
+<meta property="og:updated_time" content="2017-10-22T02:08:02.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="技术博客">
+<meta name="twitter:description" content="决策配置管控二期：dd配置管控和慧脑融合进行了细分评审，并进入开发阶段。 细分阶段的主要问题点：  对类目和业务单元关系：最初的设计要把业务单元弱化掉；因子、动作、规则在二级类目下管理，在全局范围使用；决策树直接在三级类目管理。经过激烈讨论后，最终方案是运行时以业务单元为主，配置态以类目为主。这样，后台代码可以兼容，同时配置人员只需要感知业务单元。 拷贝模式和引用模式：最初的设计要把因子、动作、规">
+  
+    <link rel="alternate" href="/atom.xml" title="技术博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">技术博客</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Suche"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-docs/15086371790105" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/10/22/docs/15086371790105/" class="article-date">
+  <time datetime="2017-10-22T02:08:02.000Z" itemprop="datePublished">2017-10-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="决策配置管控二期：dd配置管控和慧脑融合"><a href="#决策配置管控二期：dd配置管控和慧脑融合" class="headerlink" title="决策配置管控二期：dd配置管控和慧脑融合"></a>决策配置管控二期：dd配置管控和慧脑融合</h2><p>进行了细分评审，并进入开发阶段。</p>
+<p>细分阶段的主要问题点：</p>
+<ul>
+<li>对类目和业务单元关系：最初的设计要把业务单元弱化掉；因子、动作、规则在二级类目下管理，在全局范围使用；决策树直接在三级类目管理。经过激烈讨论后，最终方案是运行时以业务单元为主，配置态以类目为主。这样，后台代码可以兼容，同时配置人员只需要感知业务单元。</li>
+<li>拷贝模式和引用模式：最初的设计要把因子、动作、规则全局使用，并且因子是引用模式，这样不可避免的导致全局更改的不可控。最终的设计是，运行时跟一期保持一致；配置态以二级类目为准。</li>
+</ul>
+<p>开发进度：</p>
+<ul>
+<li>配置管控相关部分迁移到新的bundle：mng-facade</li>
+<li>facade接口设计和定义完成80%，决策流接口设计和定义还未完成。</li>
+<li>建表/DO层/Repository:完成70%。</li>
+</ul>
+<p>下周对主流程进行开发，同时，也要兼容以前代码。</p>
+<p>dd配置管控部分的系分相关文档：<a href="https://lark.alipay.com/mdc/dd/dd-config-2nd" target="_blank" rel="noopener">https://lark.alipay.com/mdc/dd/dd-config-2nd</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/10/22/docs/15086371790105/" data-id="cjcakdp3200134wifmxvz9kry" class="article-share-link">Teilen</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/10/22/docs/15080457414666/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Neuer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/10/15/docs/15080623770293/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Älter</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archiv</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">letzter Beitrag</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/01/11/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2018/01/11/docs/15156644923181/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2018/01/11/docs/15154045756604/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2018/01/10/docs/15155800245176/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2018/01/10/docs/15153963579254/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 DanielJyc<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

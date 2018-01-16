@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>技术博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="storm学习原理和实例部分流式框架对比Hadoop只能处理适合进行批量计算的需求；Storm用来解决分布式流式计算系统。除此之外，流计算还有spark streaming和flink。对比：   如果你想要的是一个允许增量计算的高速事件处理系统，Storm会是最佳选择。 如果你必须有状态的计算，恰好一次的递送，并且不介意高延迟的话，那么可以考虑Spark Streaming，特别如果你还计划图形">
+<meta property="og:type" content="article">
+<meta property="og:title" content="技术博客">
+<meta property="og:url" content="http://yoursite.com/2018/01/10/docs/15153963579254/index.html">
+<meta property="og:site_name" content="技术博客">
+<meta property="og:description" content="storm学习原理和实例部分流式框架对比Hadoop只能处理适合进行批量计算的需求；Storm用来解决分布式流式计算系统。除此之外，流计算还有spark streaming和flink。对比：   如果你想要的是一个允许增量计算的高速事件处理系统，Storm会是最佳选择。 如果你必须有状态的计算，恰好一次的递送，并且不介意高延迟的话，那么可以考虑Spark Streaming，特别如果你还计划图形">
+<meta property="og:image" content="http://yoursite.com/2018/01/10/docs/15153963579254/media/15152262382414/15152288920269.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/01/10/docs/15153963579254/media/15152262382414/15153820369981.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/01/10/docs/15153963579254/media/15152262382414/15152291458332.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/01/10/docs/15153963579254/media/15152262382414/15153930533601.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/01/10/docs/15153963579254/media/15152262382414/15153932587430.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/01/10/docs/15153963579254/media/15152262382414/15153941313422.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/01/10/docs/15153963579254/media/15152262382414/15153960805842.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/01/10/docs/15153963579254/media/15153963579254/15153981288478.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/01/10/docs/15153963579254/media/15153963579254/15153981837831.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/01/10/docs/15153963579254/media/15153963579254/15153981996980.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/01/10/docs/15153963579254/media/15153963579254/15153983422720.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/01/10/docs/15153963579254/media/15153963579254/15153983724519.jpg">
+<meta property="og:updated_time" content="2018-01-10T06:19:30.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="技术博客">
+<meta name="twitter:description" content="storm学习原理和实例部分流式框架对比Hadoop只能处理适合进行批量计算的需求；Storm用来解决分布式流式计算系统。除此之外，流计算还有spark streaming和flink。对比：   如果你想要的是一个允许增量计算的高速事件处理系统，Storm会是最佳选择。 如果你必须有状态的计算，恰好一次的递送，并且不介意高延迟的话，那么可以考虑Spark Streaming，特别如果你还计划图形">
+<meta name="twitter:image" content="http://yoursite.com/2018/01/10/docs/15153963579254/media/15152262382414/15152288920269.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="技术博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">技术博客</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Suche"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-docs/15153963579254" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/01/10/docs/15153963579254/" class="article-date">
+  <time datetime="2018-01-10T06:19:30.000Z" itemprop="datePublished">2018-01-10</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="storm学习"><a href="#storm学习" class="headerlink" title="storm学习"></a>storm学习</h1><h1 id="原理和实例部分"><a href="#原理和实例部分" class="headerlink" title="原理和实例部分"></a>原理和实例部分</h1><h2 id="流式框架对比"><a href="#流式框架对比" class="headerlink" title="流式框架对比"></a>流式框架对比</h2><p>Hadoop只能处理适合进行批量计算的需求；Storm用来解决分布式流式计算系统。除此之外，流计算还有spark streaming和flink。对比：</p>
+<p><img src="media/15152262382414/15152288920269.jpg" alt="-w389"></p>
+<ul>
+<li>如果你想要的是一个允许增量计算的高速事件处理系统，Storm会是最佳选择。</li>
+<li>如果你必须有状态的计算，恰好一次的递送，并且不介意高延迟的话，那么可以考虑Spark Streaming，特别如果你还计划图形操作、机器学习或者访问SQL的话，Apache Spark的stack允许你将一些library与数据流相结合(Spark SQL，Mllib，GraphX)，它们会提供便捷的一体化编程模型。尤其是数据流算法(例如：K均值流媒体)允许Spark实时决策的促进。</li>
+<li>Flink支持增量迭代，具有对迭代自动优化的功能，在迭代式数据处理上，比Spark更突出，Flink基于每个事件一行一行地流式处理，真正的流式计算，流式计算跟Storm性能差不多，支持毫秒级计算，而Spark则只能支持秒级计算。</li>
+</ul>
+<h2 id="storm-主要概念"><a href="#storm-主要概念" class="headerlink" title="storm 主要概念"></a>storm 主要概念</h2><p>Storm采用的是Master-Slave结构，就是使用一个节点来管理整个集群的运行状态。Master节点被称为：Nimbus，Slave节点用来维护每台机器的状态，被称为Supervisor。</p>
+<ul>
+<li>Nimbus的角色是只负责一些管理性的工作，它并不关心Worker之间的数据是如何传输的。</li>
+<li>Supervisor的角色是听Nimbus的话，来启动并监控真正进行计算的Worker的进程。</li>
+<li>Worker：运行在工作节点上面，被Supervisor守护进程创建的用来干活的JVM进程。一个Worker里面不会运行属于不同的topology的执行任务。</li>
+<li>拓扑（topology）：在Storm中，先要设计一个用于实时计算的图状结构，我们称之为拓扑（topology）。这个拓扑将会被提交给集群，由集群中的主控节点（master node）分发代码，将任务分配给工作节点（worker node）执行。一个拓扑中包括spout和bolt两种角色。运行Topology：把代码以及所依赖的jar打进一个jar包，运行<code>strom jar all-your-code.jar backtype.storm.MyTopology arg1 arg2</code>。这个命令会运行主类:backtype.strom.MyTopology，参数是arg1, arg2。这个类的main函数定义这个topology并且把它提交给Nimbus。storm jar负责连接到nimbus并且上传jar文件。</li>
+<li>数据源节点Spout：发送消息，负责将数据流以tuple元组的形式发送出去。</li>
+<li>普通计算节点Bolt：负责转换这些数据流，在bolt中可以完成计算、过滤等操作，bolt自身也可以随机将数据发送给其他bolt。</li>
+<li>记录Tuples：由spout发射出的tuple是不可变数组，对应着固定的键值对。</li>
+<li><p>tuple：storm使用tuple来作为它的数据模型。每个tuple是一堆值，每个值有一个名字，并且每个值可以是任何类型。Tuple本来应该是一个Key-Value的Map，由于各个组件间传递的tuple的字段名称已经事先定义好了，所以Tuple只需要按序填入各个Value，所以就是一个Value List。一个Tuple代表数据流中的一个基本的处理单元，例如一条cookie日志，它可以包含多个Field，每个Field表示一个属性。<br><img src="media/15152262382414/15153820369981.jpg" alt=""></p>
+</li>
+<li><p>Stream：一个没有边界的、源源不断的、连续的Tuple序列就组成了Stream。</p>
+</li>
+</ul>
+<p><img src="media/15152262382414/15152291458332.jpg" alt=""></p>
+<h2 id="一个简单的Topology"><a href="#一个简单的Topology" class="headerlink" title="一个简单的Topology"></a>一个简单的Topology</h2><p>看一下storm-starter里面的ExclamationTopology:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">TopologyBuilder builder =<span class="keyword">new</span> TopologyBuilder();</span><br><span class="line">builder.setSpout(<span class="number">1</span>, <span class="keyword">new</span> TestWordSpout(),<span class="number">10</span>);</span><br><span class="line">builder.setBolt(<span class="number">2</span>, <span class="keyword">new</span> ExclamationBolt(),<span class="number">3</span>).shuffleGrouping(<span class="number">1</span>);</span><br><span class="line">builder.setBolt(<span class="number">3</span>, <span class="keyword">new</span> ExclamationBolt(),<span class="number">2</span>).shuffleGrouping(<span class="number">2</span>);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>setSpout和setBolt的三个参数：指定的id、包含处理逻辑的对象(spout或者bolt)、并行度（可选）。</li>
+<li>spout要实现IRichSpout的接口；bolt要实现IRichBolt接口。</li>
+<li>并行度表示集群里面需要多少个thread来一起执行这个节点；如果你忽略它，那么storm会分配一个线程来执行这个节点。</li>
+<li>setBolt方法返回一个InputDeclarer对象，这个对象是用来定义Bolt的输入。</li>
+<li>shuffleGrouping表示所有的tuple会被随机的分发给bolt的所有task。<strong>给task分发tuple的策略有很多种，后面会介绍：</strong></li>
+</ul>
+<p>这个Topology包含一个Spout和两个Bolt。这里第一个Bolt声明它要读取spout所发射的所有的tuple — 使用shuffle grouping。而第二个bolt声明它读取第一个bolt所发射的tuple。Spout发射单词，每个bolt在每个单词后面加个”!!!”。这三个节点被排成一条线: spout发射单词给第一个bolt， 第一个bolt然后把处理好的单词发射给第二个bolt。如果spout发射的单词是[“bob”]和[“john”], 那么第二个bolt会发射[“bolt!!!!!!”]和[“john!!!!!!”]出来。</p>
+<p>如果想第二个bolt读取spout和第一个bolt所发射的所有的tuple， 那么应该这样定义第二个bolt:<code>builder.setBolt(3,new ExclamationBolt(),5).shuffleGrouping(1).shuffleGrouping(2);</code></p>
+<p>TestWordSpout从[“nathan”, “mike”, “jackson”, “golda”, “bertels”]里面随机选择一个单词发射出来。TestWordSpout里面的nextTuple()方法是这样定义的：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">nextTuple</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    Utils.sleep(<span class="number">100</span>);</span><br><span class="line">    <span class="keyword">final</span> String[] words=<span class="keyword">new</span> String[]&#123;<span class="string">"nathan"</span>,<span class="string">"mike"</span>,<span class="string">"jackson"</span>,<span class="string">"golda"</span>,<span class="string">"bertels"</span>&#125;;</span><br><span class="line">    <span class="keyword">final</span> Random rand =<span class="keyword">new</span> Random();</span><br><span class="line">    <span class="keyword">final</span> String word = words[rand.nextInt(words.length)];</span><br><span class="line">    _collector.emit(newValues(word));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>ExclamationBolt把”!!!”拼接到输入tuple后面。实现：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">ExclamationBolt</span> <span class="keyword">implements</span> <span class="title">IRichBolt</span> </span>&#123;</span><br><span class="line">    OutputCollector _collector;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">prepare</span><span class="params">(Map conf, TopologyContext context, OutputCollector collector)</span></span>&#123;</span><br><span class="line">        _collector = collector;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">execute</span><span class="params">(Tuple tuple)</span> </span>&#123;</span><br><span class="line">        _collector.emit(tuple,<span class="keyword">new</span> Values(tuple.getString(<span class="number">0</span>) +<span class="string">"!!!"</span>));</span><br><span class="line">        _collector.ack(tuple);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">cleanup</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">declareOutputFields</span><span class="params">(OutputFieldsDeclarer declarer)</span> </span>&#123;</span><br><span class="line">        declarer.declare(newFields(<span class="string">"word"</span>));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>prepare方法提供给bolt一个Outputcollector用来发射tuple。Bolt可以在任何时候发射tuple: 在prepare, execute或者cleanup方法里面, 或者甚至在另一个线程里面异步发射。这里prepare方法只是简单地把OutputCollector作为一个类字段保存下来给后面execute方法使用。</li>
+<li>execute方法从bolt的一个输入接收tuple(一个bolt可能有多个输入源). ExclamationBolt获取tuple的第一个字段，加上”!!!”之后再发射出去。如果一个bolt有多个输入源，可以通过调用Tuple#getSourceComponent方法来知道它是来自哪个输入源的。execute方法里面还有其它一些事情值得一提：输入tuple被作为emit方法的第一个参数，并且输入tuple在最后一行被ack。<strong>这些呢都是Storm可靠性API的一部分，后面会解释。</strong></li>
+<li>cleanup方法在bolt被关闭的时候调用， 它应该清理所有被打开的资源。但是集群不保证这个方法一定会被执行。比如执行task的机器down掉了，那么根本就没有办法来调用那个方法。cleanup设计的时候是被用来在local mode的时候才被调用(也就是说在一个进程里面模拟整个storm集群), 并且你想在关闭一些topology的时候避免资源泄漏。</li>
+<li>declareOutputFields定义一个叫做”word”的字段的tuple。</li>
+</ul>
+<p>storm的运行有两种模式: 本地模式和分布式模式。本地模式主要用于开发测试。</p>
+<ul>
+<li>本地模式：运行storm-starter里面的topology的时候，它们就是以本地模式运行的，可以看到topology里面的每一个组件在发射什么消息。</li>
+<li>分布式模式：storm由一堆机器组成。当提交topology给master的时候，同时也需要提交topology的代码。master负责分发代码，并且负责给topolgoy分配工作进程。如果一个工作进程挂掉了，master节点会重新分配到其它节点。</li>
+</ul>
+<p>下面是以本地模式运行ExclamationTopology的代码:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Config conf =<span class="keyword">new</span> Config();</span><br><span class="line">conf.setDebug(<span class="keyword">true</span>);</span><br><span class="line">conf.setNumWorkers(<span class="number">2</span>);</span><br><span class="line">LocalCluster cluster =<span class="keyword">new</span> LocalCluster();</span><br><span class="line">cluster.submitTopology(<span class="string">"test"</span>, conf, builder.createTopology());</span><br><span class="line">Utils.sleep(<span class="number">10000</span>);</span><br><span class="line">cluster.killTopology(<span class="string">"test"</span>);</span><br><span class="line">cluster.shutdown();</span><br></pre></td></tr></table></figure>
+<p>首先， 这个代码定义通过定义一个LocalCluster对象来定义一个进程内的集群。提交topology给这个虚拟的集群和提交topology给分布式集群是一样的。通过调用submitTopology方法来提交topology，三个参数：要运行的topology的名字、配置对象、要运行的topology本身。</p>
+<p>topology的名字用来唯一区别一个topology，可以用这个名字来kill这个topology。必须显式的杀掉一个topology， 否则它会一直运行。</p>
+<p>Conf对象可以配置很多东西， 下面两个是最常见的：</p>
+<ul>
+<li>TOPOLOGY_WORKERS(setNumWorkers) 定义集群分配多少个工作进程执行这个topology。topology里面的每个组件都需要线程来执行；每个组件通过setBolt和setSpout来指定需要的线程数；这些线程都运行在工作进程里面。每一个工作进程包含一些节点的一些工作线程。比如，如果你指定300个线程，60个进程， 那么每个工作进程里面要执行6个线程，而这6个线程可能属于不同的组件(Spout, Bolt)。你可以通过调整每个组件的并行度以及这些线程所在的进程数量来调整topology的性能。</li>
+<li>TOPOLOGY_DEBUG(setDebug), 当它被设置成true的话， storm会记录下每个组件所发射的每条消息。这在本地环境调试topology很有用， 但是在线上这么做的话会影响性能的。</li>
+</ul>
+<h2 id="Topology的三个组件"><a href="#Topology的三个组件" class="headerlink" title="Topology的三个组件"></a>Topology的三个组件</h2><p>运行中的Topology主要由以下三个组件组成的：Worker processes（进程）、Executors (threads)（线程）、Tasks。</p>
+<p><img src="media/15152262382414/15153930533601.jpg" alt="-w400"></p>
+<p>举例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Config conf =<span class="keyword">new</span> Config();</span><br><span class="line">conf.setNumWorkers(<span class="number">2</span>);</span><br><span class="line">TopologyBuilder builder =<span class="keyword">new</span> TopologyBuilder();</span><br><span class="line">builder.setSpout(<span class="string">"blue-spout"</span>, <span class="keyword">new</span> BlueSpout(),<span class="number">2</span>);</span><br><span class="line">builder.setBolt(<span class="string">"green-bolt"</span>, <span class="keyword">new</span> GreenBolt(),<span class="number">2</span>)</span><br><span class="line">        .setNumTasks(<span class="number">4</span>) <span class="comment">//设置Task数量</span></span><br><span class="line">        .shuffleGrouping(<span class="string">"blue-spout"</span>);</span><br><span class="line">builder.setBolt(<span class="string">"yellow-bolt"</span>,<span class="keyword">new</span> ExclamationBolt(),<span class="number">6</span>).shuffleGrouping(<span class="string">"green-bolt"</span>);</span><br></pre></td></tr></table></figure>
+<p>对应的Worker processes（进程）、Executors (threads)（线程）、Tasks数量。指定了2个Worker。共2+2+6=10个Executor线程，每个Worker5个（图中未画出来）。绿色指定了Task数量为4，蓝色和黄色没有指定。</p>
+<p><img src="media/15152262382414/15153932587430.jpg" alt="-w600"></p>
+<h2 id="流分组策略-Stream-grouping"><a href="#流分组策略-Stream-grouping" class="headerlink" title="流分组策略(Stream grouping)"></a>流分组策略(Stream grouping)</h2><p>流分组策略告诉topology如何在两个组件之间发送tuple。spouts和bolts以很多task的形式在topology里面同步执行。如果从task的粒度来看一个运行的topology，它应该是这样的:</p>
+<p><img src="media/15152262382414/15153941313422.jpg" alt="-w502"></p>
+<p>当Bolt A的一个task要发送一个tuple给Bolt B， 它应该发送给Bolt B的哪个task呢？下面是一些常用的 “路由选择” 机制：</p>
+<ul>
+<li>ShuffleGrouping：随机选择一个Task来发送。</li>
+<li>FiledGrouping：根据Tuple中Fields来做一致性hash，相同hash值的Tuple被发送到相同的Task。</li>
+<li>AllGrouping：广播发送，将每一个Tuple发送到所有的Task。</li>
+<li>GlobalGrouping：所有的Tuple会被发送到某个Bolt中的id最小的那个Task。</li>
+<li>NoneGrouping：不关心Tuple发送给哪个Task来处理，等价于ShuffleGrouping。</li>
+<li>DirectGrouping：直接将Tuple发送到指定的Task来处理。</li>
+</ul>
+<h2 id="使用其他的语言来定义Bolt"><a href="#使用其他的语言来定义Bolt" class="headerlink" title="使用其他的语言来定义Bolt"></a>使用其他的语言来定义Bolt</h2><p>Bolt可以使用任何语言来定义。用其它语言定义的bolt会被当作子进程(subprocess)来执行， storm使用JSON消息通过stdin/stdout来和这些subprocess通信。这个通信协议是一个只有100行的库，storm团队给这些库开发了对应的Ruby, Python和Fancy版本。</p>
+<h2 id="可靠的消息处理"><a href="#可靠的消息处理" class="headerlink" title="可靠的消息处理"></a>可靠的消息处理</h2><p>Storm允许用户在Spout中发射一个新的源Tuple时为其指定一个MessageId，这个MessageId可以是任意的Object对象。多个源Tuple可以共用同一个MessageId，表示这多个源Tuple对用户来说是同一个消息单元。Storm的可靠性是指Storm会告知用户，每一个消息单元是否在一个指定的时间内被完全处理。完全处理的意思是该MessageId绑定的源Tuple以及由该源Tuple衍生的所有Tuple，都经过了Topology中每一个应该到达的Bolt的处理。</p>
+<p><img src="media/15152262382414/15153960805842.jpg" alt=""></p>
+<p>在Spout中由<code>message 1</code>绑定的tuple1和tuple2分别经过bolt1和bolt2的处理，然后生成了两个新的Tuple，并最终流向了bolt3。当bolt3处理完之后，称message 1被完全处理了。</p>
+<p>Storm中的每一个Topology中都包含有一个Acker组件。Acker组件的任务就是跟踪从Spout中流出的每一个messageId所绑定的Tuple树中的所有Tuple的处理情况。如果在用户设置的最大超时时间内这些Tuple没有被完全处理，那么Acker会告诉Spout该消息处理失败，相反则会告知Spout该消息处理成功。</p>
+<h1 id="Storm接口详解"><a href="#Storm接口详解" class="headerlink" title="Storm接口详解"></a>Storm接口详解</h1><h2 id="IComponent接口"><a href="#IComponent接口" class="headerlink" title="IComponent接口"></a>IComponent接口</h2><p>Spout和Bolt都是其Component。所以，Storm定义了一个名叫IComponent的总接口。IComponent的继承关系如下图所示：</p>
+<p><img src="media/15153963579254/15153981288478.jpg" alt=""></p>
+<p>绿色部分是我们最常用、比较简单的部分。红色部分是与事务相关。BaseComponent是Storm提供的“偷懒”的类。为什么这么说呢，它及其子类，都或多或少实现了其接口定义的部分方法。这样我们在用的时候，可以直接继承该类，而不是自己每次都写所有的方法。但值得一提的是，BaseXXX这种定义的类，它所实现的方法，都是空的，直接返回null。</p>
+<h2 id="Spout"><a href="#Spout" class="headerlink" title="Spout"></a>Spout</h2><p><img src="media/15153963579254/15153981837831.jpg" alt="-w535"></p>
+<p><img src="media/15153963579254/15153981996980.jpg" alt=""></p>
+<p>各个接口说明：</p>
+<ul>
+<li>open方法：是初始化动作。允许你在该spout初始化时做一些动作，传入了上下文，方便取上下文的一些数据。</li>
+<li>close方法：在该spout关闭前执行，但是并不能得到保证其一定被执行。spout是作为task运行在worker内，在cluster模式下，supervisor会直接kill -9 woker的进程，这样它就无法执行了。而在本地模式下，只要不是kill -9, 如果是发送停止命令，是可以保证close的执行的。 </li>
+<li>activate和deactivate方法 ：一个spout可以被暂时激活和关闭，这两个方法分别在对应的时刻被调用。 </li>
+<li>nextTuple方法：负责消息的接入，执行数据发射。是Spout中的最重要方法。</li>
+<li>ack(Object)方法：传入的Object其实是一个id，唯一表示一个tuple。该方法是这个id所对应的tuple被成功处理后执行。 </li>
+<li>fail(Object)方法：同ack，只不过是tuple处理失败时执行。 </li>
+</ul>
+<p>如果继承了BaseRichSpout，就不用实现close、activate、deactivate、ack、fail和getComponentConfiguration方法，只关心最基本核心的部分。 </p>
+<p>总结：通常情况下（Shell和事务型的除外），实现一个Spout，可以直接实现接口IRichSpout，如果不想写多余的代码，可以直接继承BaseRichSpout。 </p>
+<h2 id="Bolt"><a href="#Bolt" class="headerlink" title="Bolt"></a>Bolt</h2><p>类图如下图所示：</p>
+<p><img src="media/15153963579254/15153983422720.jpg" alt="-w577"></p>
+<p><img src="media/15153963579254/15153983724519.jpg" alt=""></p>
+<ul>
+<li>prepare方法：IBolt继承了java.io.Serializable，我们在nimbus上提交了topology以后，创建出来的bolt会序列化后发送到具体执行的worker上去。worker在执行该Bolt时，会先调用prepare方法传入当前执行的上下文。</li>
+<li>execute方法：接受一个tuple进行处理，并用prepare方法传入的OutputCollector的ack方法（表示成功）或fail（表示失败）来反馈处理结果。</li>
+<li>cleanup方法：同ISpout的close方法，在关闭前调用。同样不保证其一定执行。</li>
+</ul>
+<p>Bolt实现时一定要注意execute方法。为什么IBasicBolt并没有继承IBolt？Storm提供了IBasicBolt接口，其目的就是实现该接口的Bolt不用在代码中提供反馈结果了，Storm内部会自动反馈成功。如果你确实要反馈失败，可以抛出FailedException。</p>
+<p>总结：通常情况下，实现一个Bolt，可以实现IRichBolt接口或继承BaseRichBolt，如果不想自己处理结果反馈，可以实现IBasicBolt接口或继承BaseBasicBolt，它实际上相当于自动做掉了prepare方法和collector.emit.ack(inputTuple)；</p>
+<h2 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h2><ul>
+<li>本地打jar：<code>mvn clean install -DskipTests=true</code>,jar包会打到<code>$HOME/.m2/repository</code>目录</li>
+<li>为集群打包（包含其他依赖）：<code>mvn package</code>–&gt;<code>target/storm-starter-{version}.jar</code></li>
+<li>local模式执行：<code>storm jar target/storm-starter-*.jar org.apache.storm.starter.ExclamationTopology -local</code></li>
+<li>集群模式执行，名称为production-topology:<code>storm jar target/storm-starter-*.jar org.apache.storm.starter.RollingTopWords production-topology</code></li>
+</ul>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ul>
+<li><a href="http://www.cnblogs.com/quchunhui/p/5370191.html" target="_blank" rel="noopener">Storm入门学习随记</a></li>
+<li><a href="http://blog.csdn.net/cm_chenmin/article/details/53072498" target="_blank" rel="noopener">流式大数据处理的三种框架：Storm，Spark和Flink</a></li>
+<li><a href="http://www.aboutyun.com/thread-7394-1-1.html" target="_blank" rel="noopener">storm 入门原理介绍</a></li>
+<li><a href="https://pan.baidu.com/s/1boRcCeb" target="_blank" rel="noopener">细细品味Storm_Storm简介及安装V1.1.pdf</a></li>
+<li><a href="https://www.cnblogs.com/zlslch/p/5965927.html" target="_blank" rel="noopener">storm的topology提交执行</a></li>
+<li><a href="https://github.com/apache/storm/tree/master/examples/storm-starter" target="_blank" rel="noopener">Example Storm Topologies</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/01/10/docs/15153963579254/" data-id="cjcakdp3l001h4wifavm442uf" class="article-share-link">Teilen</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/01/10/docs/15155800245176/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Neuer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/01/10/docs/15155523079106/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Älter</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archiv</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">letzter Beitrag</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/01/11/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2018/01/11/docs/15156644923181/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2018/01/11/docs/15154045756604/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2018/01/10/docs/15155800245176/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2018/01/10/docs/15153963579254/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 DanielJyc<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

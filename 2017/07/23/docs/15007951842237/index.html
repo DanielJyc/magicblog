@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>技术博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="MDC-DD完成了DD决策中模型、接口、参数中心发布和权限的细分。模型主要增加：Action。Action中的数据都是模版，会被实例化到Rule。 ppt 熟悉了DD的整体流程，把代码调试、阅读了一遍。对页面和后台的交互接口和模型进行了分析，系分完成了70%，下周进行系分评审。其中，重点部分是希望参数中心，提供排序和模糊搜索能力，下周找崇幻进行沟通。 其它hbase超时问题：MIF调用MDC，偶尔">
+<meta property="og:type" content="article">
+<meta property="og:title" content="技术博客">
+<meta property="og:url" content="http://yoursite.com/2017/07/23/docs/15007951842237/index.html">
+<meta property="og:site_name" content="技术博客">
+<meta property="og:description" content="MDC-DD完成了DD决策中模型、接口、参数中心发布和权限的细分。模型主要增加：Action。Action中的数据都是模版，会被实例化到Rule。 ppt 熟悉了DD的整体流程，把代码调试、阅读了一遍。对页面和后台的交互接口和模型进行了分析，系分完成了70%，下周进行系分评审。其中，重点部分是希望参数中心，提供排序和模糊搜索能力，下周找崇幻进行沟通。 其它hbase超时问题：MIF调用MDC，偶尔">
+<meta property="og:updated_time" content="2017-07-23T07:37:35.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="技术博客">
+<meta name="twitter:description" content="MDC-DD完成了DD决策中模型、接口、参数中心发布和权限的细分。模型主要增加：Action。Action中的数据都是模版，会被实例化到Rule。 ppt 熟悉了DD的整体流程，把代码调试、阅读了一遍。对页面和后台的交互接口和模型进行了分析，系分完成了70%，下周进行系分评审。其中，重点部分是希望参数中心，提供排序和模糊搜索能力，下周找崇幻进行沟通。 其它hbase超时问题：MIF调用MDC，偶尔">
+  
+    <link rel="alternate" href="/atom.xml" title="技术博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">技术博客</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Suche"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-docs/15007951842237" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/07/23/docs/15007951842237/" class="article-date">
+  <time datetime="2017-07-23T07:37:35.000Z" itemprop="datePublished">2017-07-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="MDC-DD"><a href="#MDC-DD" class="headerlink" title="MDC-DD"></a>MDC-DD</h3><p>完成了DD决策中模型、接口、参数中心发布和权限的细分。<br>模型主要增加：Action。Action中的数据都是模版，会被实例化到Rule。</p>
+<p>ppt</p>
+<p>熟悉了DD的整体流程，把代码调试、阅读了一遍。对页面和后台的交互接口和模型进行了分析，系分完成了70%，下周进行系分评审。其中，重点部分是希望参数中心，提供排序和模糊搜索能力，下周找崇幻进行沟通。</p>
+<h1 id="其它"><a href="#其它" class="headerlink" title="其它"></a>其它</h1><p>hbase超时问题：MIF调用MDC，偶尔会有超时。通过捞取日志分析，hbase大概十万分之一的概率超过两秒，但是都没有超过4秒。找hbase人员沟通分析后，属于正常范围。综合考虑，把RPC超时由2s改为 4秒。下周发布。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/07/23/docs/15007951842237/" data-id="cjcakdp2v000y4wifjd52bc4o" class="article-share-link">Teilen</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/08/20/docs/15031972315802/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Neuer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/06/25/docs/14983595581539/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Älter</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archiv</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">letzter Beitrag</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/01/11/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2018/01/11/docs/15156644923181/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2018/01/11/docs/15154045756604/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2018/01/10/docs/15155800245176/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2018/01/10/docs/15153963579254/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 DanielJyc<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
